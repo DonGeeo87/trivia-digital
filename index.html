@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Explorador Digital: Trivia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-blue-50 text-gray-800 min-h-screen flex items-center justify-center px-4">
+
+    <!-- Slide motivacional -->
+    <div id="slideTexto" class="fixed top-0 left-0 right-0 bg-yellow-100 text-yellow-800 py-2 text-center text-sm font-semibold shadow-md z-50">
+        🌟 Hoy es un gran día para aprender algo nuevo.
+    </div>
+
+    <main class="text-center space-y-4 animate-fade-in mt-16">
+        <h1 class="text-3xl font-bold">🧠 Explorador Digital</h1>
+        <p class="text-lg">Ingresa tu nombre para comenzar:</p>
+        <input id="nombre" type="text" placeholder="Tu nombre" class="px-4 py-2 border rounded w-64">
+        <p class="text-lg">Elige una categoría:</p>
+        <div class="space-y-2">
+            <button onclick="startQuiz('canva')" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 w-64">Canva</button>
+            <button onclick="startQuiz('redes')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 w-64">Redes Sociales</button>
+            <button onclick="startQuiz('whatsapp')" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 w-64">WhatsApp Business</button>
+        </div>
+    </main>
+
+    <!-- Footer redes sociales -->
+    <footer class="absolute bottom-4 left-0 right-0 text-center text-sm text-gray-600">
+        <p>📱 Sígueme en redes:</p>
+        <p>
+            <a href="https://instagram.com/lanzatumarcadigital" class="underline hover:text-pink-600" target="_blank">@lanzatumarcadigital en Instagram</a><br>
+            <a href="https://youtube.com/@lanzatumarcadigital" class="underline hover:text-red-600" target="_blank">@lanzatumarcadigital en YouTube</a>
+        </p>
+    </footer>
+
+    <!-- Script preguntas -->
+    <script src="js/main.js"></script>
+
+    <!-- Script slide motivacional -->
+    <script>
+        const mensajesMotivacionales = [
+            "🚀 Tu futuro digital comienza hoy.",
+            "💡 Cada clic te acerca a tu meta.",
+            "🔥 Aprende algo nuevo y hazlo tuyo.",
+            "🎯 La práctica te convierte en experto.",
+            "🌟 Hoy es un gran día para aprender algo nuevo.",
+            "📲 Domina las herramientas digitales paso a paso.",
+            "🤖 La tecnología está a tu favor.",
+            "💼 Haz que tu marca personal brille.",
+            "💪 Tú puedes más de lo que imaginas.",
+            "📚 El conocimiento es tu mejor inversión."
+        ];
+
+        function cambiarMensaje() {
+            const elemento = document.getElementById("slideTexto");
+            const indice = Math.floor(Math.random() * mensajesMotivacionales.length);
+            elemento.textContent = mensajesMotivacionales[indice];
+        }
+
+        setInterval(cambiarMensaje, 5000);
+    </script>
+
+</body>
+</html>
