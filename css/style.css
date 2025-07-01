@@ -1,7 +1,648 @@
+/* Animaciones base mejoradas */
 .animate-fade-in {
-    animation: fadeIn 0.7s ease-in-out;
+    animation: fadeIn 1s ease-out;
 }
+
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { 
+        opacity: 0; 
+        transform: translateY(30px) scale(0.95); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+    }
+}
+
+.animate-slide-down {
+    animation: slideDown 0.8s ease-out;
+}
+
+@keyframes slideDown {
+    from { 
+        transform: translateY(-100%); 
+        opacity: 0; 
+    }
+    to { 
+        transform: translateY(0); 
+        opacity: 1; 
+    }
+}
+
+/* Animaciones gamificadas avanzadas */
+.animate-bounce-in {
+    animation: bounceIn 1s ease-out;
+}
+
+@keyframes bounceIn {
+    0% { 
+        opacity: 0; 
+        transform: scale(0.3) translateY(-50px) rotate(-10deg); 
+    }
+    30% { 
+        opacity: 0.7; 
+        transform: scale(1.1) translateY(-10px) rotate(5deg); 
+    }
+    60% { 
+        opacity: 0.9; 
+        transform: scale(0.95) translateY(5px) rotate(-2deg); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: scale(1) translateY(0) rotate(0deg); 
+    }
+}
+
+.animate-slide-in-right {
+    animation: slideInRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100px) rotateY(30deg);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0) rotateY(0deg);
+        opacity: 1;
+    }
+}
+
+.animate-pulse-success {
+    animation: pulseSuccess 1s ease-in-out;
+}
+
+@keyframes pulseSuccess {
+    0%, 100% { 
+        transform: scale(1); 
+    }
+    25% { 
+        transform: scale(1.05); 
+        box-shadow: 0 0 30px rgba(16, 185, 129, 0.6);
+    }
+    50% { 
+        transform: scale(1.1); 
+        background: linear-gradient(45deg, #10b981, #059669);
+        box-shadow: 0 0 40px rgba(16, 185, 129, 0.8);
+    }
+    75% { 
+        transform: scale(1.05); 
+        box-shadow: 0 0 30px rgba(16, 185, 129, 0.6);
+    }
+}
+
+.animate-shake-error {
+    animation: shakeError 0.8s ease-in-out;
+}
+
+@keyframes shakeError {
+    0%, 100% { 
+        transform: translateX(0) rotate(0deg); 
+    }
+    15% { 
+        transform: translateX(-8px) rotate(-2deg); 
+        box-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
+    }
+    30% { 
+        transform: translateX(8px) rotate(2deg); 
+        background: linear-gradient(45deg, #ef4444, #dc2626);
+    }
+    45% { 
+        transform: translateX(-6px) rotate(-1deg); 
+    }
+    60% { 
+        transform: translateX(6px) rotate(1deg); 
+    }
+    75% { 
+        transform: translateX(-3px) rotate(-0.5deg); 
+    }
+}
+
+/* Efectos de respuestas mejorados */
+.correct-answer {
+    background: linear-gradient(135deg, #10b981, #059669, #047857) !important;
+    color: white !important;
+    transform: scale(1.08) rotateZ(1deg) !important;
+    box-shadow: 0 15px 40px rgba(16, 185, 129, 0.5), 0 0 30px rgba(52, 211, 153, 0.4) !important;
+    border: 3px solid #34d399 !important;
+    animation: correctAnswer 0.8s ease-out !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+@keyframes correctAnswer {
+    0% { 
+        transform: scale(1) rotateZ(0deg); 
+        box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+    }
+    30% { 
+        transform: scale(1.15) rotateZ(2deg); 
+        box-shadow: 0 20px 50px rgba(16, 185, 129, 0.6), 0 0 40px rgba(52, 211, 153, 0.5);
+    }
+    60% { 
+        transform: scale(1.05) rotateZ(-1deg); 
+        box-shadow: 0 18px 45px rgba(16, 185, 129, 0.5), 0 0 35px rgba(52, 211, 153, 0.4);
+    }
+    100% { 
+        transform: scale(1.08) rotateZ(1deg); 
+        box-shadow: 0 15px 40px rgba(16, 185, 129, 0.5), 0 0 30px rgba(52, 211, 153, 0.4);
+    }
+}
+
+.wrong-answer {
+    background: linear-gradient(135deg, #ef4444, #dc2626, #b91c1c) !important;
+    color: white !important;
+    transform: scale(0.92) rotateZ(-1deg) !important;
+    box-shadow: 0 10px 30px rgba(239, 68, 68, 0.5), 0 0 25px rgba(248, 113, 113, 0.4) !important;
+    border: 3px solid #f87171 !important;
+    animation: wrongAnswer 0.8s ease-out !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+@keyframes wrongAnswer {
+    0% { 
+        transform: scale(1) rotateZ(0deg); 
+        box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+    }
+    20% { 
+        transform: scale(0.85) rotateZ(-3deg); 
+        box-shadow: 0 15px 40px rgba(239, 68, 68, 0.6), 0 0 30px rgba(248, 113, 113, 0.5);
+    }
+    40% { 
+        transform: scale(0.95) rotateZ(2deg); 
+        box-shadow: 0 12px 35px rgba(239, 68, 68, 0.5), 0 0 25px rgba(248, 113, 113, 0.4);
+    }
+    100% { 
+        transform: scale(0.92) rotateZ(-1deg); 
+        box-shadow: 0 10px 30px rgba(239, 68, 68, 0.5), 0 0 25px rgba(248, 113, 113, 0.4);
+    }
+}
+    60% { transform: scale(0.88) rotateZ(-1deg); }
+    100% { transform: scale(0.92) rotateZ(-1deg); }
+}
+
+/* Barras de progreso animadas */
+.progress-bar {
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    animation: progressShimmer 2s infinite;
+}
+
+@keyframes progressShimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Efectos de logros mejorados */
+.badge-glow {
+    position: relative;
+    overflow: hidden;
+    animation: badgeGlow 3s ease-in-out infinite;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+    box-shadow: 
+        0 0 20px rgba(251, 191, 36, 0.6),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+@keyframes badgeGlow {
+    0%, 100% { 
+        box-shadow: 
+            0 0 20px rgba(251, 191, 36, 0.6),
+            inset 0 2px 4px rgba(255, 255, 255, 0.3);
+    }
+    50% { 
+        box-shadow: 
+            0 0 40px rgba(251, 191, 36, 0.9),
+            0 0 60px rgba(251, 191, 36, 0.6),
+            inset 0 2px 4px rgba(255, 255, 255, 0.5);
+        transform: scale(1.05);
+    }
+}
+
+.badge-glow::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    animation: badgeShine 3s infinite;
+}
+
+@keyframes badgeShine {
+    0% { transform: translate(-100%, -100%) rotate(45deg); }
+    50% { transform: translate(-50%, -50%) rotate(45deg); }
+    100% { transform: translate(100%, 100%) rotate(45deg); }
+}
+
+/* Efectos de pregunta mejorados */
+.question-card {
+    position: relative;
+    transform: translateX(100px) rotateY(15deg);
+    opacity: 0;
+    animation: questionSlideIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes questionSlideIn {
+    0% {
+        transform: translateX(100px) rotateY(15deg) scale(0.9);
+        opacity: 0;
+    }
+    60% {
+        transform: translateX(0) rotateY(-2deg) scale(1.02);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateX(0) rotateY(0deg) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Popup de puntuación mejorado */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.8) translateY(-20px);
+    }
+}
+
+/* Posicionamiento del score popup */
+.score-popup {
+    position: relative;
+    overflow: hidden;
+    animation: scorePopupAdvanced 2s ease-out forwards;
+    backdrop-filter: blur(10px);
+}
+
+.score-popup::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shimmer 2s infinite;
+    pointer-events: none;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+@keyframes scorePopupAdvanced {
+    0% { 
+        transform: translate(-50%, -50%) scale(0) rotate(-180deg); 
+        opacity: 0; 
+    }
+    30% { 
+        transform: translate(-50%, -50%) scale(1.3) rotate(10deg); 
+        opacity: 1; 
+    }
+    60% { 
+        transform: translate(-50%, -50%) scale(0.9) rotate(-5deg); 
+        opacity: 1; 
+    }
+    80% { 
+        transform: translate(-50%, -50%) scale(1.05) rotate(2deg); 
+        opacity: 1; 
+    }
+    90% { 
+        transform: translate(-50%, -50%) scale(1) rotate(0deg); 
+        opacity: 1; 
+    }
+    100% { 
+        transform: translate(-50%, -50%) scale(0.8) rotate(0deg); 
+        opacity: 0; 
+    }
+}
+
+/* Efectos de botones mejorados */
+.answer-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.answer-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transition: left 0.6s;
+}
+
+.answer-btn:hover::before {
+    left: 100%;
+}
+
+.answer-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+}
+
+.answer-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Efectos de supervivencia (modo supervivencia) */
+.survival-mode {
+    position: relative;
+}
+
+.survival-mode::after {
+    content: '🔥 MODO SUPERVIVENCIA';
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    animation: survivalPulse 2s infinite;
+}
+
+@keyframes survivalPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Efectos de desafío diario */
+.daily-challenge {
+    position: relative;
+    border: 3px solid transparent;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    background-clip: padding-box;
+}
+
+.daily-challenge::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 3px;
+    background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #f5576c);
+    border-radius: inherit;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    animation: rainbowBorder 3s linear infinite;
+}
+
+@keyframes rainbowBorder {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* Efectos de nivel del jugador */
+.level-up-animation {
+    animation: levelUp 2s ease-out;
+}
+
+@keyframes levelUp {
+    0% { 
+        transform: scale(1); 
+        filter: brightness(1);
+    }
+    30% { 
+        transform: scale(1.3); 
+        filter: brightness(1.5) saturate(1.5);
+        box-shadow: 0 0 50px rgba(255, 215, 0, 0.8);
+    }
+    60% { 
+        transform: scale(1.1); 
+        filter: brightness(1.3) saturate(1.3);
+    }
+    100% { 
+        transform: scale(1); 
+        filter: brightness(1) saturate(1);
+    }
+}
+
+/* Responsive mejorado */
+@media (max-width: 768px) {
+    .question-card {
+        animation: questionSlideInMobile 0.6s ease-out forwards;
+    }
+    
+    @keyframes questionSlideInMobile {
+        from {
+            transform: translateY(50px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    .answer-btn {
+        padding: 1rem;
+    }
+    
+    .answer-btn .font-medium {
+        font-size: 1rem;
+    }
+}
+
+/* Hover effects for touch devices */
+@media (hover: none) {
+    .answer-btn:hover {
+        transform: none;
+    }
+    
+    .answer-btn:active {
+        transform: scale(0.95);
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* Estilos para el nuevo diseño de preguntas */
+.question-card {
+    position: relative;
+    animation: questionSlideIn 0.8s ease-out;
+}
+
+@keyframes questionSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.answer-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.answer-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.6s;
+}
+
+.answer-btn:hover::before {
+    left: 100%;
+}
+
+.answer-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+}
+
+.answer-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Efectos de partículas para preguntas */
+.question-card .absolute {
+    animation: floatParticle 3s ease-in-out infinite;
+}
+
+.question-card .absolute:nth-child(2) {
+    animation-delay: -1s;
+}
+
+.question-card .absolute:nth-child(3) {
+    animation-delay: -2s;
+}
+
+@keyframes floatParticle {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translateY(-10px) rotate(180deg);
+        opacity: 0.8;
+    }
+}
+
+/* Efectos de respuesta mejorados con partículas */
+.correct-answer::after {
+    content: '✨';
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: 24px;
+    animation: sparkle 0.8s ease-out;
+}
+
+.wrong-answer::after {
+    content: '❌';
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: 20px;
+    animation: shake 0.6s ease-out;
+}
+
+@keyframes sparkle {
+    0% { 
+        opacity: 0; 
+        transform: translateY(-50%) scale(0) rotate(0deg); 
+    }
+    50% { 
+        opacity: 1; 
+        transform: translateY(-50%) scale(1.2) rotate(180deg); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateY(-50%) scale(1) rotate(360deg); 
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateY(-50%) translateX(0); }
+    25% { transform: translateY(-50%) translateX(-5px); }
+    75% { transform: translateY(-50%) translateX(5px); }
+}
+
+/* Estilos para indicadores de modo de juego */
+.game-mode-indicator {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.05);
+    }
+}
+
+/* Animación específica para popup de logros */
+@keyframes badgePopupAnimation {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.3) rotate(-10deg);
+    }
+    15% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1) rotate(5deg);
+    }
+    30% {
+        transform: translate(-50%, -50%) scale(0.95) rotate(-2deg);
+    }
+    45% {
+        transform: translate(-50%, -50%) scale(1.02) rotate(1deg);
+    }
+    60% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    }
+    85% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8) rotate(0deg);
+    }
 }

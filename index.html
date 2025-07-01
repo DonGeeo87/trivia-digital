@@ -2,62 +2,270 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Explorador Digital: Trivia</title>
+    <title>🎯 Explorador Digital - Trivia Challenge</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'game-primary': '#4F46E5',
+                        'game-secondary': '#7C3AED',
+                        'game-accent': '#F59E0B',
+                        'game-success': '#10B981',
+                        'game-danger': '#EF4444'
+                    },
+                    fontFamily: {
+                        'game': ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body class="bg-blue-50 text-gray-800 min-h-screen flex items-center justify-center px-4">
+<body class="font-game bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white min-h-screen overflow-x-hidden">
 
-    <!-- Slide motivacional -->
-    <div id="slideTexto" class="fixed top-0 left-0 right-0 bg-yellow-100 text-yellow-800 py-2 text-center text-sm font-semibold shadow-md z-50">
-        🌟 Hoy es un gran día para aprender algo nuevo.
+    <!-- Partículas animadas de fondo -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-20 left-10 w-4 h-4 bg-yellow-400 rounded-full animate-ping opacity-75"></div>
+        <div class="absolute top-40 right-20 w-6 h-6 bg-blue-400 rounded-full animate-bounce opacity-50"></div>
+        <div class="absolute bottom-20 left-20 w-5 h-5 bg-green-400 rounded-full animate-pulse opacity-60"></div>
+        <div class="absolute bottom-40 right-10 w-3 h-3 bg-pink-400 rounded-full animate-ping opacity-80"></div>
+        <div class="absolute top-1/2 left-1/2 w-8 h-8 bg-purple-400 rounded-full animate-spin opacity-30"></div>
     </div>
 
-    <main class="text-center space-y-4 animate-fade-in mt-16">
-        <h1 class="text-3xl font-bold">🧠 Explorador Digital</h1>
-        <p class="text-lg">Ingresa tu nombre para comenzar:</p>
-        <input id="nombre" type="text" placeholder="Tu nombre" class="px-4 py-2 border rounded w-64">
-        <p class="text-lg">Elige una categoría:</p>
-        <div class="space-y-2">
-            <button onclick="startQuiz('canva')" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 w-64">Canva</button>
-            <button onclick="startQuiz('redes')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 w-64">Redes Sociales</button>
-            <button onclick="startQuiz('whatsapp')" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 w-64">WhatsApp Business</button>
+    <!-- Slide motivacional mejorado -->
+    <div id="slideTexto" class="fixed top-0 left-0 right-0 bg-gradient-to-r from-yellow-400 to-orange-500 text-black py-3 text-center text-sm font-bold shadow-2xl z-50 animate-slide-down">
+        <div class="flex items-center justify-center space-x-2">
+            <span class="animate-bounce">🌟</span>
+            <span>Hoy es un gran día para aprender algo nuevo</span>
+            <span class="animate-bounce">🚀</span>
+        </div>
+    </div>
+
+    <main class="relative z-10 text-center space-y-8 animate-fade-in pt-20 pb-10 px-4">
+        <!-- Header principal con efectos -->
+        <div class="max-w-4xl mx-auto">
+            <div class="relative bg-gradient-to-r from-indigo-600/20 to-purple-600/20 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 p-8 mb-8 overflow-hidden">
+                <!-- Efectos de brillo -->
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-purple-400/10 animate-pulse"></div>
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"></div>
+                
+                <div class="relative z-10">
+                    <h1 class="text-6xl font-black mb-4 bg-gradient-to-r from-yellow-400 via-pink-400 to-blue-400 bg-clip-text text-transparent animate-pulse">
+                        🧠 EXPLORADOR DIGITAL
+                    </h1>
+                    <p class="text-xl text-blue-200 mb-2">¡EL DESAFÍO DEFINITIVO!</p>
+                    <p class="text-lg text-purple-200">Conviértete en un experto digital y desbloquea todos los logros</p>
+                </div>
+            </div>
+
+            <!-- Stats del jugador mejoradas -->
+            <div id="playerStats" class="hidden grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-gradient-to-br from-blue-500/20 to-blue-700/20 backdrop-blur-xl rounded-2xl p-6 border border-blue-400/20 hover:scale-105 transition-all duration-300">
+                    <div class="text-4xl font-black text-blue-400" id="totalScore">0</div>
+                    <div class="text-sm text-blue-200 font-medium">PUNTOS TOTALES</div>
+                    <div class="w-full bg-blue-900/50 rounded-full h-2 mt-2">
+                        <div class="bg-gradient-to-r from-blue-400 to-blue-600 h-2 rounded-full" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-green-500/20 to-green-700/20 backdrop-blur-xl rounded-2xl p-6 border border-green-400/20 hover:scale-105 transition-all duration-300">
+                    <div class="text-4xl font-black text-green-400" id="completedQuiz">0</div>
+                    <div class="text-sm text-green-200 font-medium">QUIZ COMPLETADOS</div>
+                    <div class="w-full bg-green-900/50 rounded-full h-2 mt-2">
+                        <div class="bg-gradient-to-r from-green-400 to-green-600 h-2 rounded-full" style="width: 60%"></div>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-yellow-500/20 to-yellow-700/20 backdrop-blur-xl rounded-2xl p-6 border border-yellow-400/20 hover:scale-105 transition-all duration-300">
+                    <div class="text-4xl font-black text-yellow-400" id="currentStreak">0</div>
+                    <div class="text-sm text-yellow-200 font-medium">RACHA ACTUAL</div>
+                    <div class="w-full bg-yellow-900/50 rounded-full h-2 mt-2">
+                        <div class="bg-gradient-to-r from-yellow-400 to-yellow-600 h-2 rounded-full" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-purple-500/20 to-purple-700/20 backdrop-blur-xl rounded-2xl p-6 border border-purple-400/20 hover:scale-105 transition-all duration-300">
+                    <div class="text-4xl font-black text-purple-400" id="playerLevel">1</div>
+                    <div class="text-sm text-purple-200 font-medium">NIVEL</div>
+                    <div class="w-full bg-purple-900/50 rounded-full h-2 mt-2">
+                        <div class="bg-gradient-to-r from-purple-400 to-purple-600 h-2 rounded-full" style="width: 45%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulario de inicio mejorado -->
+            <div id="startForm" class="max-w-2xl mx-auto">
+                <div class="bg-gradient-to-r from-indigo-600/20 to-purple-600/20 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 p-8 mb-8">
+                    <div class="text-3xl font-bold mb-6">
+                        <span class="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                            🎯 INGRESA TU NOMBRE DE EXPLORADOR
+                        </span>
+                    </div>
+                    
+                    <div class="relative mb-8">
+                        <input id="nombre" type="text" placeholder="Tu nombre de explorador..." 
+                               class="w-full px-6 py-4 bg-white/10 backdrop-blur-xl border-2 border-white/20 rounded-xl text-white placeholder-white/60 text-lg font-medium focus:border-yellow-400 focus:outline-none focus:ring-4 focus:ring-yellow-400/20 transition-all duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-xl -z-10 blur"></div>
+                    </div>
+                    
+                    <div class="text-3xl font-bold mb-6">
+                        <span class="bg-gradient-to-r from-pink-400 to-red-400 bg-clip-text text-transparent">
+                            🚀 ELIGE TU MISIÓN ÉPICA
+                        </span>
+                    </div>
+                    
+                    <!-- Botones de categoría con diseño gaming -->
+                    <div class="space-y-4">
+                        <button onclick="startQuiz('canva')" 
+                                class="group relative w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 rounded-2xl p-6 transform hover:scale-105 transition-all duration-300 shadow-2xl border border-purple-400/30 overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-r from-purple-400/20 to-pink-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="relative z-10 flex items-center justify-between">
+                                <div class="text-left">
+                                    <div class="text-2xl font-black text-white mb-1">🎨 MAESTRO DE CANVA</div>
+                                    <div class="text-purple-200 text-sm">Domina el diseño digital</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="bg-white/20 px-4 py-2 rounded-full text-sm font-bold">10 RETOS</div>
+                                    <div class="text-yellow-400 text-xs mt-1">⭐⭐⭐</div>
+                                </div>
+                            </div>
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-purple-400/10 rounded-full -translate-y-8 translate-x-8"></div>
+                        </button>
+                        
+                        <button onclick="startQuiz('redes')" 
+                                class="group relative w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 rounded-2xl p-6 transform hover:scale-105 transition-all duration-300 shadow-2xl border border-blue-400/30 overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-cyan-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="relative z-10 flex items-center justify-between">
+                                <div class="text-left">
+                                    <div class="text-2xl font-black text-white mb-1">📱 GURÚ DE REDES</div>
+                                    <div class="text-blue-200 text-sm">Conquista las redes sociales</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="bg-white/20 px-4 py-2 rounded-full text-sm font-bold">10 RETOS</div>
+                                    <div class="text-yellow-400 text-xs mt-1">⭐⭐⭐</div>
+                                </div>
+                            </div>
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-blue-400/10 rounded-full -translate-y-8 translate-x-8"></div>
+                        </button>
+                        
+                        <button onclick="startQuiz('whatsapp')" 
+                                class="group relative w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 rounded-2xl p-6 transform hover:scale-105 transition-all duration-300 shadow-2xl border border-green-400/30 overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-r from-green-400/20 to-emerald-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="relative z-10 flex items-center justify-between">
+                                <div class="text-left">
+                                    <div class="text-2xl font-black text-white mb-1">💬 EXPERTO WHATSAPP</div>
+                                    <div class="text-green-200 text-sm">Maestro de la comunicación</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="bg-white/20 px-4 py-2 rounded-full text-sm font-bold">10 RETOS</div>
+                                    <div class="text-yellow-400 text-xs mt-1">⭐⭐⭐</div>
+                                </div>
+                            </div>
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-green-400/10 rounded-full -translate-y-8 translate-x-8"></div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logros desbloqueados mejorados -->
+            <div id="achievements" class="hidden max-w-4xl mx-auto">
+                <div class="bg-gradient-to-r from-yellow-600/20 to-orange-600/20 backdrop-blur-xl rounded-3xl shadow-2xl border border-yellow-400/20 p-8">
+                    <h3 class="text-3xl font-black mb-6 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                        🏆 HALL DE LA FAMA
+                    </h3>
+                    <div id="badgeContainer" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <!-- Los badges se agregan dinámicamente -->
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
-    <!-- Footer redes sociales -->
-    <footer class="absolute bottom-4 left-0 right-0 text-center text-sm text-gray-600">
-        <p>📱 Sígueme en redes:</p>
-        <p>
-            <a href="https://instagram.com/lanzatumarcadigital" class="underline hover:text-pink-600" target="_blank">@lanzatumarcadigital en Instagram</a><br>
-            <a href="https://youtube.com/@lanzatumarcadigital" class="underline hover:text-red-600" target="_blank">@lanzatumarcadigital en YouTube</a>
-        </p>
+    <!-- Footer mejorado -->
+    <footer class="relative z-10 mt-16 py-8 text-center border-t border-white/10">
+        <div class="max-w-4xl mx-auto px-4">
+            <p class="text-lg font-semibold mb-4 bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
+                📱 SÍGUEME EN MIS REDES SOCIALES
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="https://instagram.com/lanzatumarcadigital" 
+                   class="group flex items-center space-x-2 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-400 hover:to-rose-400 px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg" 
+                   target="_blank">
+                    <span>📸</span>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://youtube.com/@lanzatumarcadigital" 
+                   class="group flex items-center space-x-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-400 hover:to-red-500 px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg" 
+                   target="_blank">
+                    <span>🎥</span>
+                    <span>YouTube</span>
+                </a>
+            </div>
+        </div>
     </footer>
 
-    <!-- Script preguntas -->
+    <!-- Script preguntas modular -->
     <script src="js/main.js"></script>
 
-    <!-- Script slide motivacional -->
+    <!-- Script slide motivacional mejorado -->
     <script>
         const mensajesMotivacionales = [
-            "🚀 Tu futuro digital comienza hoy.",
-            "💡 Cada clic te acerca a tu meta.",
-            "🔥 Aprende algo nuevo y hazlo tuyo.",
-            "🎯 La práctica te convierte en experto.",
-            "🌟 Hoy es un gran día para aprender algo nuevo.",
-            "📲 Domina las herramientas digitales paso a paso.",
-            "🤖 La tecnología está a tu favor.",
-            "💼 Haz que tu marca personal brille.",
-            "💪 Tú puedes más de lo que imaginas.",
-            "📚 El conocimiento es tu mejor inversión."
+            "🚀 Tu futuro digital comienza HOY",
+            "💡 Cada respuesta te acerca a la GRANDEZA",
+            "🔥 Aprende, domina y TRIUNFA",
+            "🎯 La práctica te convierte en LEYENDA",
+            "🌟 Hoy es un gran día para aprender algo nuevo",
+            "📲 Domina las herramientas digitales paso a paso",
+            "🤖 La tecnología está de TU lado",
+            "💼 Haz que tu marca personal BRILLE",
+            "💪 Tú puedes MÁS de lo que imaginas",
+            "📚 El conocimiento es tu SUPERPODER"
         ];
 
         function cambiarMensaje() {
             const elemento = document.getElementById("slideTexto");
+            if (!elemento) return; // Verificar que el elemento existe
+            
             const indice = Math.floor(Math.random() * mensajesMotivacionales.length);
-            elemento.textContent = mensajesMotivacionales[indice];
+            
+            // Animación de salida
+            elemento.style.transform = 'translateY(-100%)';
+            
+            setTimeout(() => {
+                if (elemento) { // Verificar nuevamente antes de modificar
+                    elemento.innerHTML = `
+                        <div class="flex items-center justify-center space-x-2">
+                            <span class="animate-bounce">🌟</span>
+                            <span>${mensajesMotivacionales[indice]}</span>
+                            <span class="animate-bounce">🚀</span>
+                        </div>
+                    `;
+                    elemento.style.transform = 'translateY(0)';
+                }
+            }, 300);
         }
 
-        setInterval(cambiarMensaje, 5000);
+        setInterval(cambiarMensaje, 4000);
+        
+        // Efectos de partículas adicionales
+        function createFloatingParticle() {
+            const particle = document.createElement('div');
+            const colors = ['bg-yellow-400', 'bg-blue-400', 'bg-green-400', 'bg-pink-400', 'bg-purple-400'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            particle.className = `fixed w-2 h-2 ${color} rounded-full pointer-events-none animate-ping opacity-70`;
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.top = Math.random() * 100 + 'vh';
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 3000);
+        }
+        
+        setInterval(createFloatingParticle, 2000);
     </script>
 
 </body>
