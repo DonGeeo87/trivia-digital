@@ -211,8 +211,8 @@ Este proyecto está bajo la Licencia MIT - mira el archivo [LICENSE](LICENSE) pa
 ## 👨‍💻 Autor
 
 **AK Creaciones**
-- GitHub: [@tu-usuario](https://github.com/tu-usuario)
-- Email: tu-email@ejemplo.com
+- GitHub: [@DonGeeo87](https://github.com/DonGeeo87)
+- Email: lanzatumarcadigital@gmail.com
 
 ## 🙏 Agradecimientos
 
